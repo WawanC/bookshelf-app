@@ -8,5 +8,37 @@
     <link rel="stylesheet" href="./index.css" />
     <script src="./index.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <nav>
+      <h1>Bookshelf App</h1>
+    </nav>
+    <div class="searchContainer">
+      <input type="text" placeholder="Cari Buku..." />
+      <button>Cari</button>
+    </div>
+    <div class="actionContainer">
+      <button>Tambah Buku</button>
+    </div>
+    <section class="mainContainer">
+      <h1>Daftar Buku</h1>
+      <div class="kotakBuku">
+        <div class="menuTipeBuku">
+          <button id="sudahBacaBtn">Sudah Dibaca</button>
+          <button id="belumBacaBtn">Belum Dibaca</button>
+        </div>
+        <section class="daftarBuku">
+          <div class="itemBuku">
+            <div class="infoBuku">
+              <h1>Judul Buku</h1>
+              <span>Penulis (Tahun)</span>
+            </div>
+            <div class="actionBuku">
+              <button>Selesai</button>
+              <button>Hapus</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
 </html>
