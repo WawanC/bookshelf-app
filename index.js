@@ -3,10 +3,12 @@ const tambahBukuBtn = document.getElementById("tambahBuku");
 const modalBackdropEl = document.getElementById("modalBackdrop");
 
 const modalForm = document.getElementById("modalForm");
+const modalTitle = document.getElementById("modalTitle");
 const titleInput = document.getElementById("titleInput");
 const authorInput = document.getElementById("authorInput");
 const yearInput = document.getElementById("yearInput");
 const isCompleteInput = document.getElementById("isCompleteInput");
+const modalSubmitBtn = document.getElementById("modalSubmit");
 
 const daftarBukuEl = document.getElementById("daftarBuku");
 
@@ -30,12 +32,23 @@ const renderBuku = () => {
 
     const actionBuku = document.createElement("div");
     actionBuku.className = "actionBuku";
-    const selesaiBtn = document.createElement("button");
-    selesaiBtn.innerText = "Selesai";
+
+    const editBtn = document.createElement("button");
+    editBtn.innerText = "Edit";
+    editBtn.addEventListener("click", () =>
+      tampilkanModal("edit", {
+        title: book.title,
+        author: book.author,
+        year: book.year,
+        isComplete: book.isComplete,
+      })
+    );
+
     const hapusBtn = document.createElement("button");
     hapusBtn.innerText = "Hapus";
     hapusBtn.addEventListener("click", () => hapusBuku(book.id));
-    actionBuku.appendChild(selesaiBtn);
+
+    actionBuku.appendChild(editBtn);
     actionBuku.appendChild(hapusBtn);
 
     itemBuku.appendChild(infoBuku);
@@ -48,7 +61,7 @@ const renderBuku = () => {
 renderBuku();
 
 tambahBukuBtn.addEventListener("click", () => {
-  modalEl.classList.toggle("tampil");
+  tampilkanModal("tambah", {});
 });
 
 modalBackdropEl.addEventListener("click", (ev) => {
@@ -92,4 +105,20 @@ const resetForm = () => {
   authorInput.value = "";
   yearInput.value = "";
   isCompleteInput.checked = false;
+};
+
+const tampilkanModal = (
+  mode,
+  { title = null, author = null, year = null, isComplete = null }
+) => {
+  modalForm.dataset.mode = mode;
+  modalTitle.innerText = mode === "tambah" ? "Tambah Buku" : "Edit Buku";
+
+  titleInput.value = title ? title : "";
+  authorInput.value = author ? author : "";
+  yearInput.value = year ? year : "";
+  isCompleteInput.checked = isComplete ? isComplete : false;
+  modalSubmitBtn.innerText = mode === "tambah" ? "Tambah" : "Edit";
+
+  modalEl.classList.toggle("tampil");
 };

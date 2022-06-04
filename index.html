@@ -11,8 +11,8 @@
   <body>
     <div class="modal" id="modal">
       <div class="modalBackdrop" id="modalBackdrop"></div>
-      <form class="modalBox" id="modalForm">
-        <h1>Tambah Buku</h1>
+      <form class="modalBox" id="modalForm" data-mode="tambah">
+        <h1 id="modalTitle">Tambah Buku</h1>
         <div class="inputContainer">
           <label for="titleInput">Title</label>
           <input type="text" id="titleInput" required />
@@ -30,7 +30,7 @@
           <input type="checkbox" id="isCompleteInput" />
         </div>
         <div class="actionContainer">
-          <button type="submit">Tambah</button>
+          <button type="submit" id="modalSubmit">Tambah</button>
         </div>
       </form>
     </div>
