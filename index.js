@@ -19,8 +19,17 @@ let books = [];
 
 const renderBuku = () => {
   daftarBukuEl.innerHTML = "";
+  const daftarBukuMode = daftarBukuEl.dataset.mode;
 
-  books.forEach((book) => {
+  let displayedBooks = books.filter((book) => {
+    if (daftarBukuMode === "sudah") {
+      return book.isComplete === true;
+    } else {
+      return book.isComplete === false;
+    }
+  });
+
+  displayedBooks.forEach((book) => {
     const itemBuku = document.createElement("div");
     itemBuku.className = "itemBuku";
 
@@ -163,11 +172,16 @@ const toggleModeDaftarBuku = (mode = "sudah") => {
 
     sudahBacaBtn.classList.toggle("selectedListMode", false);
     belumBacaBtn.classList.toggle("unselectedListMode", false);
+
+    daftarBukuEl.dataset.mode = "belum";
   } else {
     sudahBacaBtn.classList.toggle("selectedListMode", true);
     belumBacaBtn.classList.toggle("unselectedListMode", true);
 
     sudahBacaBtn.classList.toggle("unselectedListMode", false);
     belumBacaBtn.classList.toggle("selectedListMode", false);
+
+    daftarBukuEl.dataset.mode = "sudah";
   }
+  renderBuku();
 };
