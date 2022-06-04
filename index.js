@@ -12,9 +12,11 @@ const modalSubmitBtn = document.getElementById("modalSubmit");
 
 const sudahBacaBtn = document.getElementById("sudahBacaBtn");
 const belumBacaBtn = document.getElementById("belumBacaBtn");
+const searchBarInput = document.getElementById("searchBarInput");
 
 const daftarBukuEl = document.getElementById("daftarBuku");
 
+let searchKeyword = null;
 let books = [];
 
 const renderBuku = () => {
@@ -29,7 +31,11 @@ const renderBuku = () => {
     }
   });
 
-  displayedBooks.forEach((book) => {
+  const filteredBooks = searchKeyword
+    ? displayedBooks.filter((book) => book.title.includes(searchKeyword))
+    : displayedBooks;
+
+  filteredBooks.forEach((book) => {
     const itemBuku = document.createElement("div");
     itemBuku.className = "itemBuku";
 
@@ -108,6 +114,15 @@ modalForm.addEventListener("submit", (ev) => {
 
 sudahBacaBtn.addEventListener("click", () => toggleModeDaftarBuku("sudah"));
 belumBacaBtn.addEventListener("click", () => toggleModeDaftarBuku("belum"));
+
+searchBarInput.addEventListener("input", () => {
+  if (searchBarInput.value.trim().length >= 1) {
+    searchKeyword = searchBarInput.value;
+  } else {
+    searchKeyword = null;
+  }
+  renderBuku();
+});
 
 const tambahBuku = (title, author, year, isComplete) => {
   books.push({
