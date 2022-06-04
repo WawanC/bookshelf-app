@@ -16,8 +16,12 @@ const searchBarInput = document.getElementById("searchBarInput");
 
 const daftarBukuEl = document.getElementById("daftarBuku");
 
+const storage = window.localStorage;
+
 let searchKeyword = null;
-let books = [];
+let books = storage.getItem("books")
+  ? JSON.parse(storage.getItem("books"))
+  : [];
 
 const renderBuku = () => {
   daftarBukuEl.innerHTML = "";
@@ -132,11 +136,15 @@ const tambahBuku = (title, author, year, isComplete) => {
     year,
     isComplete,
   });
+
+  saveBooks();
   renderBuku();
 };
 
 const hapusBuku = (id) => {
   books = books.filter((book) => book.id !== id);
+
+  saveBooks();
   renderBuku();
 };
 
@@ -153,6 +161,7 @@ const updateBuku = (
     ? isComplete
     : books[bookIdx].isComplete;
 
+  saveBooks();
   renderBuku();
 };
 
@@ -199,4 +208,8 @@ const toggleModeDaftarBuku = (mode = "sudah") => {
     daftarBukuEl.dataset.mode = "sudah";
   }
   renderBuku();
+};
+
+const saveBooks = () => {
+  storage.setItem("books", JSON.stringify(books));
 };
