@@ -152,14 +152,14 @@ const updateBuku = (
   id,
   { title = null, author = null, year = null, isComplete = null }
 ) => {
+  console.log(isComplete !== null);
   const bookIdx = books.findIndex((book) => book.id === id);
 
   books[bookIdx].title = title ? title : books[bookIdx].title;
   books[bookIdx].author = author ? author : books[bookIdx].author;
   books[bookIdx].year = year ? year : books[bookIdx].year;
-  books[bookIdx].isComplete = isComplete
-    ? isComplete
-    : books[bookIdx].isComplete;
+  books[bookIdx].isComplete =
+    isComplete !== null ? isComplete : books[bookIdx].isComplete;
 
   saveBooks();
   renderBuku();
