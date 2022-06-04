@@ -1,21 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
+:root {
+  --primary: #222831;
+  --secondary: #393e46;
+  --tertiary: #00adb5;
+  --fourth: #eeeeee;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins";
+  color: var(--fourth);
+}
+
+input {
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 0.5rem;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  /* gap: 1rem; */
   height: 100vh;
+  background-color: var(--primary);
 }
 
 nav {
-  background-color: #ccc;
+  background-color: var(--secondary);
   padding: 1rem;
   text-align: center;
 }
@@ -31,8 +45,9 @@ button {
   border: none;
   padding: 0.5rem;
   font-size: 1rem;
-  background-color: #ccc;
+  background-color: var(--tertiary);
   cursor: pointer;
+  border-radius: 0.5rem;
 }
 
 .searchContainer {
@@ -53,7 +68,6 @@ button {
 }
 
 .mainContainer {
-  /* background-color: #ccc; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,35 +91,32 @@ button {
   width: 45%;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  background-color: white;
   position: relative;
 }
 
 .selectedListMode {
   border-bottom: none;
-  box-shadow: 0 8px 0 #fff, 0 0 8px #888;
+  box-shadow: 0 8px 0 var(--secondary), 0 0 8px var(--secondary);
   z-index: 2;
+  background-color: var(--secondary);
 }
 
 .unselectedListMode {
-  background-color: #ccc !important;
+  background-color: var(--secondary) !important;
+  opacity: 0.5;
 }
 
 .daftarBuku {
-  background-color: white;
-  /* min-height: 300px; */
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
+  background-color: var(--secondary);
 
-  box-shadow: 0 0 8px #888;
+  box-shadow: 0 0 8px var(--secondary);
   position: relative;
   z-index: 1;
-  /* border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  border-top-right-radius: 1rem; */
   border-radius: 1rem;
 }
 
@@ -115,14 +126,14 @@ button {
 }
 
 .itemBuku {
-  background-color: #ccc;
+  background-color: var(--primary);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  border-radius: 1rem;
 }
 
 .infoBuku {
-  /* background-color: white; */
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -137,22 +148,18 @@ button {
 .actionBuku {
   display: flex;
   align-items: center;
-  /* background-color: bisque; */
   gap: 1rem;
 }
 
 .actionBuku button {
-  /* background-color: blueviolet; */
-  background-color: white;
+  background-color: var(--tertiary);
 }
 
 footer {
-  background-color: #ccc;
+  background-color: var(--secondary);
   padding: 1rem;
   display: flex;
   justify-content: center;
-  /* justify-self: flex-end; */
-  /* font-weight: lighter; */
   font-style: italic;
 }
 
@@ -177,7 +184,7 @@ footer {
 }
 
 .modalBox {
-  background-color: white;
+  background-color: var(--primary);
   padding: 1rem 4rem;
   min-width: 50%;
   display: flex;
@@ -204,8 +211,6 @@ footer {
 
 .checkboxContainer {
   display: flex;
-  /* background-color: red; */
-  /* align-self: flex-start; */
   align-items: center;
   gap: 1rem;
 }
