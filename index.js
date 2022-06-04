@@ -10,7 +10,7 @@ const isCompleteInput = document.getElementById("isCompleteInput");
 
 const daftarBukuEl = document.getElementById("daftarBuku");
 
-const books = [];
+let books = [];
 
 const renderBuku = () => {
   daftarBukuEl.innerHTML = "";
@@ -34,6 +34,7 @@ const renderBuku = () => {
     selesaiBtn.innerText = "Selesai";
     const hapusBtn = document.createElement("button");
     hapusBtn.innerText = "Hapus";
+    hapusBtn.addEventListener("click", () => hapusBuku(book.id));
     actionBuku.appendChild(selesaiBtn);
     actionBuku.appendChild(hapusBtn);
 
@@ -66,10 +67,8 @@ modalForm.addEventListener("submit", (ev) => {
 
   tambahBuku(enteredTitle, enteredAuthor, enteredYear, enteredIsComplete);
 
-  console.log(books);
   resetForm();
   modalEl.classList.toggle("tampil");
-  renderBuku();
 });
 
 const tambahBuku = (title, author, year, isComplete) => {
@@ -80,6 +79,12 @@ const tambahBuku = (title, author, year, isComplete) => {
     year,
     isComplete,
   });
+  renderBuku();
+};
+
+const hapusBuku = (id) => {
+  books = books.filter((book) => book.id !== id);
+  renderBuku();
 };
 
 const resetForm = () => {
