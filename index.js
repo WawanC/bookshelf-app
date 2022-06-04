@@ -25,6 +25,7 @@ let books = storage.getItem("books")
 
 const renderBuku = () => {
   daftarBukuEl.innerHTML = "";
+
   const daftarBukuMode = daftarBukuEl.dataset.mode;
 
   let displayedBooks = books.filter((book) => {
@@ -38,6 +39,15 @@ const renderBuku = () => {
   const filteredBooks = searchKeyword
     ? displayedBooks.filter((book) => book.title.includes(searchKeyword))
     : displayedBooks;
+
+  if (filteredBooks.length <= 0) {
+    const noBooksTextEl = document.createElement("span");
+    noBooksTextEl.innerHTML = searchKeyword
+      ? "Buku tidak ditemukan"
+      : "Belum ada buku";
+    noBooksTextEl.className = "noBook";
+    daftarBukuEl.appendChild(noBooksTextEl);
+  }
 
   filteredBooks.forEach((book) => {
     const itemBuku = document.createElement("div");
@@ -133,6 +143,20 @@ searchBarInput.addEventListener("input", () => {
     searchKeyword = null;
   }
   renderBuku();
+});
+
+titleInput.addEventListener("input", () => {
+  if (titleInput.value.trim().length < 1) {
+    titleInput.setCustomValidity("Valid title is required");
+    titleInput.value = "";
+  }
+});
+
+authorInput.addEventListener("input", () => {
+  if (authorInput.value.trim().length < 1) {
+    authorInput.setCustomValidity("Valid title is required");
+    authorInput.value = "";
+  }
 });
 
 const tambahBuku = (title, author, year, isComplete) => {
