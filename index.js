@@ -55,6 +55,12 @@ const renderBuku = () => {
     const actionBuku = document.createElement("div");
     actionBuku.className = "actionBuku";
 
+    const toggleBtn = document.createElement("button");
+    toggleBtn.innerText = book.isComplete ? "Belum Selesai" : "Selesai";
+    toggleBtn.addEventListener("click", () =>
+      updateBuku(book.id, { isComplete: !book.isComplete })
+    );
+
     const editBtn = document.createElement("button");
     editBtn.innerText = "Edit";
     editBtn.addEventListener("click", () =>
@@ -71,6 +77,7 @@ const renderBuku = () => {
     hapusBtn.innerText = "Hapus";
     hapusBtn.addEventListener("click", () => hapusBuku(book.id));
 
+    actionBuku.appendChild(toggleBtn);
     actionBuku.appendChild(editBtn);
     actionBuku.appendChild(hapusBtn);
 
