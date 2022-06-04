@@ -9,6 +9,7 @@
     <script src="./index.js" defer></script>
   </head>
   <body>
+
     <div class="modal" id="modal">
       <div class="modalBackdrop" id="modalBackdrop"></div>
       <form class="modalBox" id="modalForm" data-mode="tambah">
@@ -34,41 +35,48 @@
         </div>
       </form>
     </div>
+    <main>
+
     <nav>
       <h1>Bookshelf App</h1>
     </nav>
-    <div class="searchContainer">
-      <input type="text" placeholder="Judul Buku" id="searchBarInput" />
-      <button>Cari</button>
-    </div>
-    <div class="actionContainer">
-      <button id="tambahBuku">Tambah Buku</button>
-    </div>
-    <section class="mainContainer">
-      <h1>Daftar Buku</h1>
-      <div class="kotakBuku">
-        <div class="menuTipeBuku">
-          <button id="sudahBacaBtn" class="selectedListMode">
-            Sudah Dibaca
-          </button>
-          <button id="belumBacaBtn" class="unselectedListMode">
-            Belum Dibaca
-          </button>
-        </div>
-        <section class="daftarBuku" id="daftarBuku" data-mode="sudah">
-          <!-- <div class="itemBuku">
-            <div class="infoBuku">
-              <h1>Judul Buku</h1>
-              <span>Penulis (Tahun)</span>
-            </div>
-            <div class="actionBuku">
-              <button>Selesai</button>
-              <button>Hapus</button>
-            </div>
-          </div> -->
-        </section>
+
+    <main>
+      <div class="searchContainer">
+        <input type="text" placeholder="Judul Buku" id="searchBarInput" />
+        <button>Cari</button>
       </div>
-    </section>
+      <div class="actionContainer">
+        <button id="tambahBuku">Tambah Buku</button>
+      </div>
+      <section class="mainContainer">
+        <h1>Daftar Buku</h1>
+        <div class="kotakBuku">
+          <div class="menuTipeBuku">
+            <button id="sudahBacaBtn" class="selectedListMode">
+              Sudah Dibaca
+            </button>
+            <button id="belumBacaBtn" class="unselectedListMode">
+              Belum Dibaca
+            </button>
+          </div>
+          <section class="daftarBuku" id="daftarBuku" data-mode="sudah">
+            <!-- <div class="itemBuku">
+              <div class="infoBuku">
+                <h1>Judul Buku</h1>
+                <span>Penulis (Tahun)</span>
+              </div>
+              <div class="actionBuku">
+                <button>Selesai</button>
+                <button>Hapus</button>
+              </div>
+            </div> -->
+          </section>
+        </div>
+      </section>
+    </main>
+    
     <footer><span>Created By Kurniawan Cristianto</h1></footer>
+
   </body>
 </html>
