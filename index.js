@@ -37,6 +37,7 @@ const renderBuku = () => {
     editBtn.innerText = "Edit";
     editBtn.addEventListener("click", () =>
       tampilkanModal("edit", {
+        id: book.id,
         title: book.title,
         author: book.author,
         year: book.year,
@@ -71,6 +72,8 @@ modalBackdropEl.addEventListener("click", (ev) => {
 });
 
 modalForm.addEventListener("submit", (ev) => {
+  const formMode = modalForm.dataset.mode || "tambah";
+  const bookId = modalForm.dataset.id || null;
   ev.preventDefault();
 
   const enteredTitle = titleInput.value.trim();
@@ -78,7 +81,14 @@ modalForm.addEventListener("submit", (ev) => {
   const enteredYear = yearInput.value;
   const enteredIsComplete = isCompleteInput.checked;
 
-  tambahBuku(enteredTitle, enteredAuthor, enteredYear, enteredIsComplete);
+  formMode === "tambah" && bookId
+    ? tambahBuku(enteredTitle, enteredAuthor, enteredYear, enteredIsComplete)
+    : updateBuku(bookId, {
+        title: enteredTitle,
+        author: enteredAuthor,
+        year: enteredYear,
+        isComplete: enteredIsComplete,
+      });
 
   resetForm();
   modalEl.classList.toggle("tampil");
@@ -100,6 +110,22 @@ const hapusBuku = (id) => {
   renderBuku();
 };
 
+const updateBuku = (
+  id,
+  { title = null, author = null, year = null, isComplete = null }
+) => {
+  const bookIdx = books.findIndex((book) => book.id === id);
+
+  books[bookIdx].title = title ? title : books[bookIdx].title;
+  books[bookIdx].author = author ? author : books[bookIdx].author;
+  books[bookIdx].year = year ? year : books[bookIdx].year;
+  books[bookIdx].isComplete = isComplete
+    ? isComplete
+    : books[bookIdx].isComplete;
+
+  renderBuku();
+};
+
 const resetForm = () => {
   titleInput.value = "";
   authorInput.value = "";
@@ -109,9 +135,10 @@ const resetForm = () => {
 
 const tampilkanModal = (
   mode,
-  { title = null, author = null, year = null, isComplete = null }
+  { id = null, title = null, author = null, year = null, isComplete = null }
 ) => {
   modalForm.dataset.mode = mode;
+  modalForm.dataset.id = id;
   modalTitle.innerText = mode === "tambah" ? "Tambah Buku" : "Edit Buku";
 
   titleInput.value = title ? title : "";
