@@ -10,6 +10,9 @@ const yearInput = document.getElementById("yearInput");
 const isCompleteInput = document.getElementById("isCompleteInput");
 const modalSubmitBtn = document.getElementById("modalSubmit");
 
+const sudahBacaBtn = document.getElementById("sudahBacaBtn");
+const belumBacaBtn = document.getElementById("belumBacaBtn");
+
 const daftarBukuEl = document.getElementById("daftarBuku");
 
 let books = [];
@@ -94,6 +97,9 @@ modalForm.addEventListener("submit", (ev) => {
   modalEl.classList.toggle("tampil");
 });
 
+sudahBacaBtn.addEventListener("click", () => toggleModeDaftarBuku("sudah"));
+belumBacaBtn.addEventListener("click", () => toggleModeDaftarBuku("belum"));
+
 const tambahBuku = (title, author, year, isComplete) => {
   books.push({
     id: new Date().toISOString(),
@@ -148,4 +154,20 @@ const tampilkanModal = (
   modalSubmitBtn.innerText = mode === "tambah" ? "Tambah" : "Edit";
 
   modalEl.classList.toggle("tampil");
+};
+
+const toggleModeDaftarBuku = (mode = "sudah") => {
+  if (mode === "belum") {
+    sudahBacaBtn.classList.toggle("unselectedListMode", true);
+    belumBacaBtn.classList.toggle("selectedListMode", true);
+
+    sudahBacaBtn.classList.toggle("selectedListMode", false);
+    belumBacaBtn.classList.toggle("unselectedListMode", false);
+  } else {
+    sudahBacaBtn.classList.toggle("selectedListMode", true);
+    belumBacaBtn.classList.toggle("unselectedListMode", true);
+
+    sudahBacaBtn.classList.toggle("unselectedListMode", false);
+    belumBacaBtn.classList.toggle("selectedListMode", false);
+  }
 };

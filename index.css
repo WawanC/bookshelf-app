@@ -74,15 +74,14 @@ button {
   position: relative;
 }
 
-#sudahBacaBtn {
-  /* background-color: green; */
+.selectedListMode {
   border-bottom: none;
   box-shadow: 0 8px 0 #fff, 0 0 8px #888;
   z-index: 2;
 }
 
-#belumBacaBtn {
-  background-color: #ccc;
+.unselectedListMode {
+  background-color: #ccc !important;
 }
 
 .daftarBuku {
