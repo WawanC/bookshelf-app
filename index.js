@@ -56,7 +56,9 @@ const renderBuku = () => {
   });
 
   const filteredBooks = searchKeyword
-    ? displayedBooks.filter((book) => book.title.includes(searchKeyword))
+    ? displayedBooks.filter((book) =>
+        book.title.toLowerCase().includes(searchKeyword.toLowerCase())
+      )
     : displayedBooks;
 
   if (filteredBooks.length <= 0) {
