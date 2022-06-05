@@ -80,6 +80,7 @@ button {
 .kotakBuku {
   width: 100%;
   position: relative;
+  animation: showup 1s;
 }
 
 .menuTipeBuku {
@@ -131,6 +132,7 @@ button {
   display: flex;
   justify-content: space-between;
   border-radius: 1rem;
+  animation: showup 1s;
 }
 
 .infoBuku {
@@ -194,6 +196,13 @@ footer {
   border-radius: 1rem;
   font-size: 1.75rem;
   position: absolute;
+
+  transform: scale(0.01);
+  transition: all 0.5s;
+}
+
+.modalBox.modalOpen {
+  transform: scale(1);
 }
 
 .inputContainer {
@@ -274,6 +283,15 @@ footer {
     align-items: flex-end;
   }
 
+  .modalBox {
+    transform: scale(1);
+    transform: translateY(75vh);
+  }
+
+  .modalBox.modalOpen {
+    transform: translateY(0);
+  }
+
   .modalBox .inputContainer {
     flex-direction: column;
     font-size: 1rem;
@@ -300,3 +318,21 @@ footer {
     font-size: 2rem;
   }
 }
+
+@keyframes showup {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* @keyframes modalPopup {
+  0% {
+    .modal {
+
+    }
+  }
+} */

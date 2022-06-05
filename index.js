@@ -104,13 +104,13 @@ tambahBukuBtn.addEventListener("click", () => {
   tampilkanModal("tambah", {});
 });
 
-modalBackdropEl.addEventListener("click", (ev) => {
+modalBackdropEl.addEventListener("click", async (ev) => {
   ev.stopPropagation();
+  await tutupModal();
   resetForm();
-  modalEl.classList.toggle("tampil");
 });
 
-modalForm.addEventListener("submit", (ev) => {
+modalForm.addEventListener("submit", async (ev) => {
   const formMode = modalForm.dataset.mode || "tambah";
   const bookId = modalForm.dataset.id || null;
   ev.preventDefault();
@@ -129,8 +129,8 @@ modalForm.addEventListener("submit", (ev) => {
         isComplete: enteredIsComplete,
       });
 
+  await tutupModal();
   resetForm();
-  modalEl.classList.toggle("tampil");
 });
 
 sudahBacaBtn.addEventListener("click", () => toggleModeDaftarBuku("sudah"));
@@ -217,7 +217,18 @@ const tampilkanModal = (
   isCompleteInput.checked = isComplete ? isComplete : false;
   modalSubmitBtn.innerText = mode === "tambah" ? "Tambah" : "Edit";
 
-  modalEl.classList.toggle("tampil");
+  modalEl.classList.toggle("tampil", true);
+  setTimeout(() => modalForm.classList.toggle("modalOpen", true), 20);
+};
+
+const tutupModal = () => {
+  modalForm.classList.toggle("modalOpen", false);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      modalEl.classList.toggle("tampil", false);
+      resolve();
+    }, 400);
+  });
 };
 
 const toggleModeDaftarBuku = (mode = "sudah") => {
