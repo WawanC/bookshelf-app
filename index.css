@@ -73,7 +73,7 @@ button {
   align-items: center;
   gap: 1rem;
   align-self: center;
-  min-width: 75%;
+  min-width: 50%;
   padding: 1rem;
 }
 
@@ -224,4 +224,79 @@ footer {
 
 .tampil {
   display: flex;
+}
+
+@media (max-width: 1200px) {
+  .mainContainer,
+  .modalBox {
+    min-width: 75%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    min-width: 100%;
+  }
+
+  .modalBox {
+    min-width: calc(100% - 1rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .mainContainer,
+  .modalBox {
+    min-width: 100%;
+    border-radius: 0;
+  }
+
+  .mainContainer {
+    padding: 0;
+  }
+
+  .menuTipeBuku button {
+    width: 50%;
+  }
+
+  .daftarBuku {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .itemBuku {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .modal {
+    align-items: flex-end;
+  }
+
+  .modalBox .inputContainer {
+    flex-direction: column;
+    font-size: 1rem;
+  }
+
+  .checkboxContainer {
+    font-size: 1rem;
+  }
+
+  .modalBox .inputContainer input {
+    font-size: 1rem;
+  }
+
+  .checkboxContainer input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .modalBox button {
+    font-size: 1rem;
+  }
+
+  #modalTitle {
+    font-size: 2rem;
+  }
 }
