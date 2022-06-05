@@ -73,7 +73,8 @@ button {
   align-items: center;
   gap: 1rem;
   align-self: center;
-  min-width: 50%;
+  width: 50%;
+  word-break: break-word;
   padding: 1rem;
 }
 
@@ -131,6 +132,7 @@ button {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   border-radius: 1rem;
   animation: showup 1s;
 }
@@ -291,15 +293,17 @@ footer {
 }
 
 @media (max-width: 1200px) {
-  .mainContainer,
   .modalBox {
     min-width: 75%;
+  }
+  .mainContainer {
+    width: 75%;
   }
 }
 
 @media (max-width: 768px) {
   .mainContainer {
-    min-width: 100%;
+    width: 100%;
   }
 
   .modalBox {
@@ -308,7 +312,6 @@ footer {
 }
 
 @media (max-width: 576px) {
-  .mainContainer,
   .modalBox {
     min-width: 100%;
     border-radius: 0;
