@@ -155,6 +155,31 @@ button {
 
 .actionBuku button {
   background-color: var(--tertiary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+
+  transition: all 0.25s;
+}
+
+.actionBuku button:hover {
+  transform: scale(1.25);
+}
+
+.belumSelesaiBtn:hover {
+  background-color: orange;
+}
+
+.selesaiBtn:hover {
+  background-color: green;
+}
+
+.editBtn:hover {
+  background-color: yellow;
+}
+
+.hapusBtn:hover {
+  background-color: red;
 }
 
 footer {
@@ -276,7 +301,11 @@ footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
+    gap: 2rem;
+  }
+
+  .actionBuku {
+    gap: 2rem;
   }
 
   .modal {
@@ -328,11 +357,3 @@ footer {
     opacity: 1;
   }
 }
-
-/* @keyframes modalPopup {
-  0% {
-    .modal {
-
-    }
-  }
-} */
