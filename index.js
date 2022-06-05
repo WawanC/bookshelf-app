@@ -149,13 +149,17 @@ titleInput.addEventListener("input", () => {
   if (titleInput.value.trim().length < 1) {
     titleInput.setCustomValidity("Valid title is required");
     titleInput.value = "";
+  } else {
+    titleInput.setCustomValidity("");
   }
 });
 
 authorInput.addEventListener("input", () => {
   if (authorInput.value.trim().length < 1) {
-    authorInput.setCustomValidity("Valid title is required");
+    authorInput.setCustomValidity("Valid author is required");
     authorInput.value = "";
+  } else {
+    authorInput.setCustomValidity("");
   }
 });
 
