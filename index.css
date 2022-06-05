@@ -159,6 +159,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   transition: all 0.25s;
 }
