@@ -15,6 +15,8 @@ const belumBacaBtn = document.getElementById("belumBacaBtn");
 const searchBarInput = document.getElementById("searchBarInput");
 
 const daftarBukuEl = document.getElementById("daftarBuku");
+const sudahBacaCountEl = document.getElementById("sudahBacaCount");
+const belumBacaCountEl = document.getElementById("belumBacaCount");
 
 const storage = window.localStorage;
 
@@ -47,21 +49,29 @@ const renderBuku = () => {
 
   const daftarBukuMode = daftarBukuEl.dataset.mode;
 
-  let displayedBooks = books.filter((book) => {
-    if (daftarBukuMode === "sudah") {
-      return book.isComplete === true;
-    } else {
-      return book.isComplete === false;
-    }
-  });
+  const bukuSudahBaca = books.filter(
+    (book) =>
+      book.isComplete &&
+      (searchKeyword
+        ? book.title.toLowerCase().includes(searchKeyword.toLowerCase())
+        : true)
+  );
 
-  const filteredBooks = searchKeyword
-    ? displayedBooks.filter((book) =>
-        book.title.toLowerCase().includes(searchKeyword.toLowerCase())
-      )
-    : displayedBooks;
+  const bukuBelumBaca = books.filter(
+    (book) =>
+      !book.isComplete &&
+      (searchKeyword
+        ? book.title.toLowerCase().includes(searchKeyword.toLowerCase())
+        : true)
+  );
 
-  if (filteredBooks.length <= 0) {
+  sudahBacaCountEl.innerText = bukuSudahBaca.length;
+  belumBacaCountEl.innerText = bukuBelumBaca.length;
+
+  const displayedBooks =
+    daftarBukuMode === "sudah" ? bukuSudahBaca : bukuBelumBaca;
+
+  if (displayedBooks.length <= 0) {
     const noBooksTextEl = document.createElement("span");
     noBooksTextEl.innerHTML = searchKeyword
       ? "Buku tidak ditemukan"
@@ -70,7 +80,7 @@ const renderBuku = () => {
     daftarBukuEl.appendChild(noBooksTextEl);
   }
 
-  filteredBooks.forEach((book) => {
+  displayedBooks.forEach((book) => {
     const itemBuku = document.createElement("div");
     itemBuku.className = "itemBuku";
 
@@ -213,7 +223,6 @@ const updateBuku = (
   id,
   { title = null, author = null, year = null, isComplete = null }
 ) => {
-  console.log(isComplete !== null);
   const bookIdx = books.findIndex((book) => book.id === id);
 
   books[bookIdx].title = title ? title : books[bookIdx].title;
